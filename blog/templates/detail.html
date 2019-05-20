@@ -1,0 +1,92 @@
+{% extends 'base.html' %}
+
+{% block contents %}
+
+<head>
+    <script type="text/javascript">
+        function showConfirm(){
+            if(confirm("삭제 하시겠습니까?")){
+                var url = "{%url 'delete' post.id %}"
+                document.location.replace(url)
+                alert("삭제되었습니다")
+            } else{
+                return false;
+            }
+        }
+
+    </script>
+</head>
+
+<style>
+
+    a{
+        text-decoration: none;
+    }
+
+    article{
+        display: flex;
+        justify-content: center;
+    }
+
+    div.card{
+        margin-top : 200px;
+        display: flex;
+        width:400px;
+        background:transparent;
+        flex-direction: column;
+    }
+
+    div.card>*{
+        background: whitesmoke;
+        text-align: center;
+        margin: 3%;
+        margin-top: 30px;
+        border-radius: 30px;
+    }
+
+    div.util{
+        background: transparent;
+        display: flex;
+        justify-content: space-between;
+        margin:1%;
+    }
+    div.util>*{
+        text-align: center;
+        border: 3px outset;
+        border-radius: 30px;
+        background: whitesmoke;
+    }
+</style>
+
+
+<article>
+    <div class='card' style="background": transparent>
+        <div class='util'>
+            <div>
+                <img src="https://cdn3.iconfinder.com/data/icons/ui-glynh-blue-01-of-5/100/UI_Glyph_Blue_1_of_3_14-512.png" id='list' height=30>
+                <a href = "{% url 'index' %}">목록</a>
+            </div>
+            <div>
+                <img src="https://cdn3.iconfinder.com/data/icons/device-apps-settings-white-with-multicolor-circl-1/2048/218_-_Edit-512.png" id='modify' height=28>
+                <a href = "{% url 'newmodify' post.id %}">수정</a>
+            </div>
+            <div>
+                <img src="https://kr.seaicons.com/wp-content/uploads/2015/06/sign-delete-icon.png" id='delete' height=30>
+                <a onclick="showConfirm();">삭제</a>
+            </div>
+        </div>
+
+        <h1 class='title'>{{post.title}}</h1>
+        <p calss='content'>{{post.content}}</p>
+        <p class='inform'>작성날짜 : {{post.pub_date}}</p>
+        
+        <div class='index'>
+            <img src="https://cdn3.iconfinder.com/data/icons/ui-glynh-blue-01-of-5/100/UI_Glyph_Blue_1_of_3_14-512.png" id='list' height=30>
+            <a href = "{% url 'index' %}">목록</a>
+        </div>
+
+        
+    </div>
+</article>
+    {% endblock %}
+    <input type="button" value="삭제" onclick="showConfirm();"/>
