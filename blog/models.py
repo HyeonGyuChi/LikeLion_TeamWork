@@ -9,3 +9,9 @@ class Post(models.Model) :
 
     def __str__(self) : 
         return self.title
+
+    def summary(self):
+        if len(self.content) >= 43 :
+            return self.content[:43] + str("…")
+        else :
+            return self.content

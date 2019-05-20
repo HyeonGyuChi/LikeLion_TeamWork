@@ -1,9 +1,19 @@
 {% extends 'base.html' %}
 
 {% block contents %}
+
+
+
+
 <style>
     a {
         text-decoration: none;
+        color:black;
+    }
+
+    a:visited{
+        text-decoration: none;
+        color:black;
     }
 
     .wrapper {
@@ -30,18 +40,17 @@
         box-shadow: 10px 10px 20px -2px rgba(0, 0, 0, 0.5);
     }
 
-    div.item {
-        border: 3px solid red;
-    }
 
     div.inform {
-        border: 3px solid blue;
+        
         display: flex;
-        justify-content: space-between;
+        justify-content: center;
+        
     }
 
     div.inform * {
         margin: 2px;
+        font-size: 11px;
 
     }
 
@@ -49,37 +58,41 @@
         margin-top: 0%
     }
 
-    #delete {
-        height: 30px;
-        margin: 0%;
-        z-index: 2;
-        position: relative;
-        left: 180;
-    }
 
-    #modify {
-        margin: 0%;
-        height: 30px;
+    div.util{
+        
+        display:flex;
+        justify-content: flex-end;
+    }
+    
+
+    a.modify, a.delete{
+        margin-left: 10px;
+        
     }
 </style>
 
+
+
+
 <article>
-    <a href="{% url 'newpost' %}">글쓰기</a>
+    <!-- <a href="{% url 'newpost' %}">글쓰기</a> -->
     <div class='wrapper'>
         {% for post in posts_show.all %}
         <div class='card'>
-            <img src="https://kr.seaicons.com/wp-content/uploads/2015/06/sign-delete-icon.png" id='delete'>
+            <div class='util'>
+                <a href="{% url 'newmodify' post.id %}" class="modify"><img src="https://cdn3.iconfinder.com/data/icons/device-apps-settings-white-with-multicolor-circl-1/2048/218_-_Edit-512.png" height="25"></a>
+                <a class="delete" onclick="showConfirm();"><img src="https://kr.seaicons.com/wp-content/uploads/2015/06/sign-delete-icon.png" height="28px"></a>
+            </div>
             <div class='item'>
                 <h1 class='title'><a href="{% url 'detail' post.id %}">{{post.title}}</a></h1>
-                <p class='content'>{{post.content}}</p>
+                <p class='content'>{{post.summary}}</p>
             </div>
             <div class='inform'>
                 <p class='date'>{{post.pub_date}}</p>
                 <!-- <a href = "{% url 'detail' post.id %}">...more</a> -->
-                <botton class="modif"><img
-                        src="https://cdn3.iconfinder.com/data/icons/device-apps-settings-white-with-multicolor-circl-1/2048/218_-_Edit-512.png"
-                        id='modify' height=28></botton>
-                <a href="{% url 'newmodify' post.id %}">수정하기</a>
+                
+                <!--<a href="{% url 'newmodify' post.id %}">수정하기</a>-->
             </div>
         </div>
 
@@ -87,8 +100,10 @@
     </div>
 </article>
 
+<!--
 <hr>
 <a href="{% url 'imageview' %}">static 이미지</a>
+-->
 
 
 {% endblock %}

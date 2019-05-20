@@ -2,18 +2,48 @@
 
 {% block contents %}
 
-<h1>여기는 new.html</h1>
 
-<form method = 'POST'>
+<style>
 
-    {% csrf_token %}
-    <table>
-        {{form.as_table}}
-    </table>
-    <br>
-    <input type="submit" value="제출하기">
-</form>
-<hr/>
-<a href="{% url 'index' %}">뒤로가기</a>
+
+div.wrapper{
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+
+div.wrapper *{
+    display: inline-block;
+    margin: 1%;
+    text-align: center;
+    
+}
+
+
+
+</style>
+
+
+
+<div class='wrapper'>
+    
+    <h1>새 글쓰기</h1>
+
+
+    <div class='card'>
+        <form method = 'POST'>
+            {% csrf_token %}
+            <table>
+                {{form.as_table}}
+            </table>
+            <br>
+            <input type="submit" value="제출하기">
+        </form>
+    </div>
+</div>    
+    <hr/>
+    <a href="{% url 'index' %}">뒤로가기</a>
+
+
 
 {% endblock %}
