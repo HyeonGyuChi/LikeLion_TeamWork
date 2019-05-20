@@ -13,7 +13,6 @@
                 return false;
             }
         }
-
     </script>
 </head>
 
@@ -23,12 +22,10 @@
     a{
         text-decoration: none;
     }
-
     article{
         display: flex;
         justify-content: center;
     }
-
     div.card{
         
         display: flex;
@@ -37,7 +34,6 @@
         flex-direction: column;
         margin-bottom: 40px;
     }
-
     div.card>*{
         background: whitesmoke;
         text-align: center;
@@ -78,6 +74,7 @@
                             <img src="https://cdn3.iconfinder.com/data/icons/ui-glynh-blue-01-of-5/100/UI_Glyph_Blue_1_of_3_14-512.png" id='list' height=30>
                             </a>
                         </div>
+                        {% if user.is_authenticated %}
                         <div>
                             <a href = "{% url 'newmodify' post.id %}">
                             <img src="https://cdn3.iconfinder.com/data/icons/device-apps-settings-white-with-multicolor-circl-1/2048/218_-_Edit-512.png" id='modify' height=28>
@@ -86,6 +83,8 @@
                         <div> 
                             <a onclick="showConfirm();"><img src="https://kr.seaicons.com/wp-content/uploads/2015/06/sign-delete-icon.png" id='delete' height=30></a>
                         </div>
+                        {% else %}
+                        {% endif %}
             </div>
           
         

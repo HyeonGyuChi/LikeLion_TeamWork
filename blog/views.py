@@ -1,7 +1,15 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from .models import Post
 from django.utils import timezone
-from .form import PostForm
+from .form import PostForm, UserForm, LoginForm
+from django.contrib.auth import (
+    authenticate,
+    login as django_login,
+    logout as django_logout,
+)
+from django.contrib.auth.models import User
+from django.contrib.auth import login, authenticate
+from django.http import HttpResponse
 
 # Create your views here.
 
@@ -75,3 +83,44 @@ def newpost(request) :
         form = PostForm() # unbound된 form
         print(form)
         return render(request, 'new.html', {'form':form})
+
+
+
+
+
+
+
+
+def signup(request):
+    if request.method == "POST":
+        form = UserForm(request.POST)
+        if form.is_valid():
+            new_user = User.objects.create_user(**form.cleaned_data)
+            login(request, new_user)
+            return redirect('index')
+        else:
+            return redirect('index')
+    else:
+        form = UserForm()
+        return render(request, 'adduser.html', {'form': form})
+    
+def signin(request):
+    if request.method == "POST":
+        form = LoginForm(request.POST)
+        username = request.POST['username']
+        password = request.POST['password']
+        user = authenticate(username = username, password = password)
+        if user is not None:
+            login(request, user)
+            return redirect('index')
+        else:
+            return HttpResponse('로그인 실패. 다시 시도 해보세요.')
+    else:
+        form = LoginForm()
+        return render(request, 'login.html', {'form': form})
+
+
+
+def logout(request):
+    django_logout(request)
+    return render(request,'logout.html')

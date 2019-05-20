@@ -11,4 +11,8 @@ urlpatterns = [
     path('delete/<int:post_id>', views.delete, name = 'delete'),
     path('update/<int:post_id>', views.update, name = 'update'),
     path('newpost/', views.newpost, name = "newpost"),
+    path('signupgo/', views.signup, name='signupgo'),
+    path('login/', views.signin, name='login'),
+    path('logout/',views.logout, name='logout'),
+
 ]

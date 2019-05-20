@@ -10,21 +10,16 @@
         text-decoration: none;
         color:black;
     }
-
     a:visited{
         text-decoration: none;
         color:black;
     }
-
     .wrapper {
         text-align: center;
-
     }
-
     .wrapper * {
         background: whitesmoke;
     }
-
     .card {
         display: inline-block;
         width: 400px;
@@ -39,33 +34,25 @@
         -moz-box-shadow: 10px 10px 20px -2px rgba(0, 0, 0, 0.5);
         box-shadow: 10px 10px 20px -2px rgba(0, 0, 0, 0.5);
     }
-
-
     div.inform {
         
         display: flex;
         justify-content: center;
         
     }
-
     div.inform * {
         margin: 2px;
         font-size: 11px;
-
     }
-
     .item .title {
         margin-top: 0%
     }
-
-
     div.util{
         
         display:flex;
         justify-content: flex-end;
     }
     
-
     a.modify, a.delete{
         margin-left: 10px;
         
@@ -81,8 +68,11 @@
         {% for post in posts_show.all %}
         <div class='card'>
             <div class='util'>
+            {% if user.is_authenticated %}
                 <a href="{% url 'newmodify' post.id %}" class="modify"><img src="https://cdn3.iconfinder.com/data/icons/device-apps-settings-white-with-multicolor-circl-1/2048/218_-_Edit-512.png" height="25"></a>
-                <a class="delete" onclick="showConfirm();"><img src="https://kr.seaicons.com/wp-content/uploads/2015/06/sign-delete-icon.png" height="28px"></a>
+                <a class="delete" onclick="showConfirm();"><a href="{% url 'delete' post.id %}"><img src="https://kr.seaicons.com/wp-content/uploads/2015/06/sign-delete-icon.png" height="28px"></a></a>
+            {% else %}
+            {% endif %}
             </div>
             <div class='item'>
                 <h1 class='title'><a href="{% url 'detail' post.id %}">{{post.title}}</a></h1>

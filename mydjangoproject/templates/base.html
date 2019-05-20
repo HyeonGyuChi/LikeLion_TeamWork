@@ -1,5 +1,6 @@
 
 
+
 <style>
         /* nav바 고정하기 BOOTSTARP 사용하고 nav에 하위 효과주기
          {
@@ -8,7 +9,6 @@
           left: 0px;
           width: 100%; position 하면 width가 줄어듬
       } */
-
     body{
         background : linear-gradient(rgba(0,0,0,0.1), rgba(0, 0, 0, 0.6)), url(https://www.mockupworld.co/wp-content/uploads/edd/2016/04/painting-on-a-wall-mockup-free-psd-1024x768.jpg);
         background-attachment: fixed;
@@ -18,7 +18,6 @@
         margin: 0%;    
         
     }
-
     nav{
         margin-top : 0px;
         margin-bottom : 30px;
@@ -36,13 +35,10 @@
         -moz-box-shadow: 10px 10px 20px 0px rgba(0,0,0,0.9);
         box-shadow: 10px 10px 20px 0px rgba(0,0,0,0.9);
     }
-
     div.nav-content{
         height: 40px;
         margin: 0%;
-
     }
-
     nav *.nav-component{
         display: inline-block;
         text-align: center;
@@ -52,17 +48,14 @@
         font-size: auto;
         font-weight: bold;
     }
-
     a {
         text-decoration: none;
         color:black;
     }
-
     a:visited{
         text-decoration: none;
         color:black;
     }   
-
     
 </style>
 
@@ -70,9 +63,15 @@
 <nav>
     <div class='nav-content'>
         <div class='nav-component'><a href = "{% url 'index' %}">HOME</a></div>
-        <div class='nav-component'><a href = "{% url 'newpost' %}">글쓰기</a></div>
+    {% if user.is_authenticated %}
+    <div class='nav-component'><center>안녕하세요 {{ user.username }}님!</center> </div> 
+        <div class='nav-component'><a href = "{% url 'newpost' %}">글쓰기</a><a href="{% url 'logout' %}">  로그아웃</a></div>
+    {% else %}
+    <div class='nav-component'><a href="{% url 'signupgo' %}">회원가입</a>  또는  <a href="{% url 'login' %}">로그인 하기</a></div>
+    {% endif %}
     </div>
 </nav>
+
 
 {% block contents %}
 

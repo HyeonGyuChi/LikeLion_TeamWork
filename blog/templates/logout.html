@@ -1,0 +1,37 @@
+{% extends 'base.html' %} 
+{% block contents %}  
+
+<style>
+    div.wrapper {
+        display: flex;
+        justify-content: center;
+    }
+
+    div.card{
+        text-align: center;
+        display: inline-block;
+        background-color : yellowgreen;
+        -webkit-box-shadow: 10px 10px 20px -2px rgba(0, 0, 0, 0.5);
+        -moz-box-shadow: 10px 10px 20px -2px rgba(0, 0, 0, 0.5);
+        box-shadow: 10px 10px 20px -2px rgba(0, 0, 0, 0.5);
+        border: 3px dashed #000000;
+        border-radius: 38px 0px 46px 38px;
+        -moz-border-radius: 38px 0px 46px 38px;
+        -webkit-border-radius: 38px 0px 46px 38px;
+        padding:20px;
+        margin: 5%;
+    }
+</style>
+
+<div class="wrapper">
+    <div class="card">
+        <h1><span>LOG-OUT SAFELY</span></h1>
+    <p>
+        안전하게 로그아웃 되셨습니다 ^- ^<br />
+        <a href="{% url 'index' %}">홈으로 돌아가기! 고고링</a>
+    </p>
+    </div>
+</div>
+
+
+{% endblock %}

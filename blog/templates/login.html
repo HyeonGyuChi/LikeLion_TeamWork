@@ -1,0 +1,55 @@
+{% extends 'base.html' %} 
+{% block contents %}
+
+<style>
+  div.wrapper {
+          display: flex;
+          justify-content: center;
+      }
+      
+  div.card{
+          text-align: center;
+          display: inline-block;
+          background-color : wheat;
+          -webkit-box-shadow: 10px 10px 20px -2px rgba(0, 0, 0, 0.5);
+          -moz-box-shadow: 10px 10px 20px -2px rgba(0, 0, 0, 0.5);
+          box-shadow: 10px 10px 20px -2px rgba(0, 0, 0, 0.5);
+          border: 3px dashed #000000;
+          border-radius: 38px 0px 46px 38px;
+          -moz-border-radius: 38px 0px 46px 38px;
+          -webkit-border-radius: 38px 0px 46px 38px;
+          padding:20px;
+          margin: 5%;
+          font-size: 20px;
+
+      }
+
+  div.wrapper form>div{
+    display: flex;
+    text-align: center;
+    flex-direction: column;
+    margin: 5%;
+  }
+</style>
+
+<div class='wrapper'>
+  <div class='card'>
+      <h2><span>로그인</span></h2>
+    <form method="post" action="">
+      {% csrf_token %}
+      <div class="id">
+        <label for="{{ form.username.id_for_label }}">닉네임</label>
+        <input class=# id="{{ form.username.id_for_label }}" maxlength="15" name="{{ form.username.html_name }}" type="text" placeholder="write your nickname.">
+      </div>
+      <div class="password">
+        <label for="exampleInputPassword1">패스워드</label>
+        <input class=# id="{{ form.password.id_for_label }}" maxlength="120" name="{{ form.password.html_name }}" type="password" placeholder="put in your Password.">
+      </div>
+      <div class="button">
+        <input type="submit" class= name="" value="로그인">
+        <input type="reset" class= name="" value="초기화">
+      </div>
+    </form>
+  </div>
+</div>
+{% endblock %}
